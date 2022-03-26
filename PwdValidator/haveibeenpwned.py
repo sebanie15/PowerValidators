@@ -32,6 +32,7 @@ def haveibeenpwned(password: str) -> bool:
     response = get("https://api.pwnedpasswords.com/range/" + my_hash[:5])
 
     for line in response.text:
-        if line.split(":")[0] == my_hash and line.split(":")[1] > 0:
+        # print(f'line: {line}')
+        if my_hash[:5] + line.split(":")[0] == my_hash and int(line.split(":")[1]) > 0:
             return False
     return True
