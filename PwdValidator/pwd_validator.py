@@ -35,18 +35,6 @@ class PwdValidator:
         else:
             self.rule = rule
 
-    def hash_pwd(self, password: str) -> str:
-        """This method returns the hash of password.
-            It yused sha1 algorithm
-
-        Args:
-            password (str): password to be hashed
-
-        Returns:
-            str: hash of password
-        """
-        return sha1(password.encode(encoding="utf-8")).hexdigest
-
     def length_is_valid(self, password: str) -> bool:
         """This method check if length of password is equal or greater
             than minimum length configured in the regule.
@@ -121,26 +109,6 @@ class PwdValidator:
             if char in ascii_uppercase:
                 counter += 1
         return counter >= self.rule.min_number_of_uppercase_char
-
-    def leakage_valid(self, password: str) -> bool:
-        """_summary_
-
-        Args:
-            password (str): password to check for leaks
-
-        Returns:
-            bool: True if number of leaks is <= than the rules specified
-        """
-        my_hash = self.hash_pwd(password)
-        response = get("https://api.pwnedpasswords.com/range/" + my_hash[:5])
-
-        for line in response.text:
-            if (
-                line.split(":")[0] == my_hash
-                and line.split(":")[1] > self.max_number_of_password_leak
-            ):
-                return False
-        return True
 
     def is_valid(self, password) -> bool:
         return all(
