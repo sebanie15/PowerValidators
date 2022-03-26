@@ -1,0 +1,5 @@
+
+
+class MinLengthException(Exception):
+    pass
+
