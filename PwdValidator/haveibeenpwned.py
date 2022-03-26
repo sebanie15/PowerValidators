@@ -26,13 +26,12 @@ def haveibeenpwned(password: str) -> bool:
         password (str): password to check for leaks
 
     Returns:
-        bool: True if number of leaks is <= than the rules specified
+        bool: False if there was no leak, otherwise True
     """
     my_hash = hash_pwd(password)
     response = get("https://api.pwnedpasswords.com/range/" + my_hash[:5])
 
-    for line in response.text:
-        # print(f'line: {line}')
-        if my_hash[:5] + line.split(":")[0] == my_hash and int(line.split(":")[1]) > 0:
-            return False
-    return True
+    for line in response.text.splitlines():
+        if my_hash[5:] == line.split(':')[0]:
+            return True
+    return False
