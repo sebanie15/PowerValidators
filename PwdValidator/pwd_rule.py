@@ -106,7 +106,7 @@ class PwdRule:
             MinLengthException: _description_
         """
         difference = value - self.__getattribute__(name)
-        if self.__getattribute__(name) < self.__sum_of_criteria_length() + difference:
+        if self._min_length_of_pwd < self.__sum_of_criteria_length() + difference:
             raise MinLengthException
         self.__setattr__(name, value)
 
@@ -149,7 +149,7 @@ class PwdRule:
         Args:
             value (int): Minimum number of digits in the password to be set.
         """
-        self.set_attr("_min_length_of_pwd", value)
+        self.set_attr("_min_number_of_digits", value)
 
     @property
     def min_number_of_special_char(self) -> int:

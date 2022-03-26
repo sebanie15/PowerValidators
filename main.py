@@ -33,6 +33,9 @@ def print_progress_bar(
 
 
 validator = PwdValidator()
+validator.rule.min_length_of_pwd = 10
+validator.rule.min_number_of_digits = 3
+
 print(validator.rule)
 
 with PwdFileManager("passwords.txt", "r") as passwords, open(
