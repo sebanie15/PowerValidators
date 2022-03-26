@@ -1,4 +1,6 @@
-# from .pwd_validator import PwdValidator
+"""The module contains a context manager for reading text files with passwords.
+
+"""
 
 
 class PwdFileManager:
@@ -27,8 +29,8 @@ class PwdFileManager:
         # clear sources
         self.file.close()
 
-    def __iter__(self):
-        return self
+    # def __iter__(self):
+    #     return self
 
     def read_password_from_file(self, filename: str = ""):
         """_summary_

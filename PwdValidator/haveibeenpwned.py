@@ -1,3 +1,7 @@
+"""Module haveibeenpwned is used to check if password has leakage on
+page https://haveibeenpwned.com/API/v3
+"""
+
 from hashlib import sha1
 from requests import get
 

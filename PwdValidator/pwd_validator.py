@@ -1,9 +1,9 @@
-from hashlib import sha1
-from unittest.mock import DEFAULT
-from requests import get
+""" Module with simple class as validator for passwords
+"""
+
+
 from string import ascii_lowercase, ascii_uppercase, punctuation
 
-from .pwd_exceptions import MinLengthException
 from PwdValidator.pwd_rule import PwdRule
 
 
@@ -111,6 +111,14 @@ class PwdValidator:
         return counter >= self.rule.min_number_of_uppercase_char
 
     def is_valid(self, password) -> bool:
+        """This method check every validation methods
+
+        Args:
+            password (str): password to validation
+
+        Returns:
+            bool: True if password is valid, False otherwise
+        """
         return all(
             [
                 self.length_is_valid(password),

@@ -1,3 +1,8 @@
+"""Password rules module
+
+"""
+
+
 from .pwd_exceptions import MinLengthException
 
 
@@ -29,9 +34,12 @@ class PwdRule:
         Args:
             min_length_of_pwd (int): _description_. Defaults to DEFAULT_MIN_NUM_OF_UPPERCASE.
             min_number_of_digits (int): _description_. Defaults to DEFAULT_MIN_NUM_OF_DIGITS.
-            min_number_of_special_char (int): _description_. Defaults to DEFAULT_MIN_NUM_OF_PUNCTUATION.
-            min_number_of_lowercase_chars (int): _description_. Defaults to DEFAULT_MIN_NUM_OF_LOWERCASE.
-            min_number_of_uppercase_chars (int): _description_. Defaults to DEFAULT_MIN_NUM_OF_UPPERCASE.
+            min_number_of_special_char (int): _description_. Defaults to
+            DEFAULT_MIN_NUM_OF_PUNCTUATION.
+            min_number_of_lowercase_chars (int): _description_. Defaults to
+            DEFAULT_MIN_NUM_OF_LOWERCASE.
+            min_number_of_uppercase_chars (int): _description_. Defaults to
+            DEFAULT_MIN_NUM_OF_UPPERCASE.
             max_number_of_password_leak (int): _description_. Defaults to DEFAULT_MAX_LEAKAGE.
         """
         # self._min_length_of_pwd = min_length_of_pwd
@@ -55,6 +63,11 @@ class PwdRule:
 
     @property
     def rules(self) -> dict:
+        """It's return a dictionary with rules parameters.
+
+        Returns:
+            dict: dictionary with rules
+        """
         return {
             "minimum length of password": self._min_length_of_pwd,
             "minimum number of digits": self._min_number_of_digits,
@@ -75,8 +88,6 @@ class PwdRule:
         Returns:
             int: sum of criteria
         """
-        if self.__set_min_numbers_of_digits is None:
-            print("nie ma jeszcze min digits")
         return (
             self._min_number_of_digits
             + self._min_number_of_special_char
@@ -97,7 +108,7 @@ class PwdRule:
         difference = value - self.__getattribute__(name)
         if self.__getattribute__(name) < self.__sum_of_criteria_length() + difference:
             raise MinLengthException
-        self.__setattribute__(name, value)
+        self.__setattr__(name, value)
 
     @property
     def min_length_of_pwd(self) -> int:
