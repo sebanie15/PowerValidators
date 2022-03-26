@@ -7,9 +7,8 @@ from .pwd_exceptions import MinLengthException
 from PwdValidator.pwd_rule import PwdRule
 
 
-
 class PwdValidator:
-    """ BasicPwdValidator is a class for checking passwords according to the
+    """BasicPwdValidator is a class for checking passwords according to the
         assumed rules - PwdRule ().
 
         The following methods are available:\n
@@ -25,7 +24,7 @@ class PwdValidator:
     """
 
     def __init__(self, rule: PwdRule = None) -> None:
-        """ Initialization of BasicPwdValidator object.
+        """Initialization of BasicPwdValidator object.
 
         Args:
             rule (PasswordRule): PasswordRule class. Defaults to None.
@@ -143,11 +142,13 @@ class PwdValidator:
                 return False
         return True
 
-    def valid(self, password) -> bool:
-        return all([
-            self.length_is_valid(password),
-            self.num_digits_is_valid(password),
-            self.num_special_char_is_valid(password),
-            self.num_lowercase_is_valid(password),
-            self.num_uppercase_is_valid(password)
-        ])
+    def is_valid(self, password) -> bool:
+        return all(
+            [
+                self.length_is_valid(password),
+                self.num_digits_is_valid(password),
+                self.num_special_char_is_valid(password),
+                self.num_lowercase_is_valid(password),
+                self.num_uppercase_is_valid(password),
+            ]
+        )

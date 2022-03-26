@@ -1,12 +1,16 @@
+from wsgiref.validate import validator
 from PwdValidator import PwdValidator, PwdFileManager, haveibeenpwned, hash_pwd
 import string
 
 
-valid = PwdValidator()
-print(valid.rule)
+validator = PwdValidator()
+print(validator.rule)
 
-with PwdFileManager('passwords.txt', 'r') as passwords, open('save_passwords.txt', mode='w') as save_passwords:
+with PwdFileManager("passwords.txt", "r") as passwords, open(
+    "safe_passwords.txt", mode="w"
+) as safe_passwords:
     for password in passwords:
-        if valid.valid(password) and haveibeenpwned(password):
-            save_passwords.write(
-                f' password: {password.strip():<30} is safe, hash of password is: {hash_pwd(password)}\n')
+        if validator.valid(password) and haveibeenpwned(password):
+            safe_passwords.write(
+                f" password: {password.strip():<30} is safe, hash of password is: {hash_pwd(password)}\n"
+            )

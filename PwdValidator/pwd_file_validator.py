@@ -1,21 +1,17 @@
-
-
 # from .pwd_validator import PwdValidator
 
 
 class PwdFileManager:
-    """_summary_
+    """_summary_"""
 
-    """
     def __init__(self, filename, mode) -> None:
-        """ Initialization of PwdFileValidation object. """
+        """Initialization of PwdFileValidation object."""
         self.filename = filename
         self.mode = mode
         self.file = None
 
     def __enter__(self):
-        """_summary_
-        """
+        """_summary_"""
         # open and share contents of the file
         self.file = open(self.filename, self.mode)
         return self.file.readlines()
@@ -34,7 +30,7 @@ class PwdFileManager:
     def __iter__(self):
         return self
 
-    def read_password_from_file(self, filename: str = ''):
+    def read_password_from_file(self, filename: str = ""):
         """_summary_
 
         Args:
