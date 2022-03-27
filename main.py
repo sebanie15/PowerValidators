@@ -4,7 +4,7 @@
 from wsgiref.validate import validator
 from PwdValidator import PwdValidator, PwdFileManager, haveibeenpwned, hash_pwd
 
-from .utils import print_progress_bar
+from progress_bar import print_progress_bar
 
 
 validator = PwdValidator()
