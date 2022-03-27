@@ -34,7 +34,7 @@ def print_progress_bar(
 
 validator = PwdValidator()
 # validator.rule.min_length_of_pwd = 10
-# validator.rule.min_number_of_digits = 3
+validator.rule.min_number_of_special_char = 1
 
 print(validator.rule)
 
