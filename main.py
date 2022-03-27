@@ -21,7 +21,7 @@ with PwdFileManager("passwords.txt", "r") as passwords, open(
     print_progress_bar(counter, len(passwords))
     for password in passwords:
         # check if password is valid with rules and has been leakage on haveibeenpwned
-        if validator.is_valid(password) and not haveibeenpwned(password):
+        if validator.validate(password) and not haveibeenpwned(password):
             safe_passwords.write(
                 f" password: {password.strip():<30} is safe, hash of password is: "
                 f"{hash_pwd(password)}\n"

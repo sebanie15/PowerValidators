@@ -4,10 +4,11 @@
 
 from string import ascii_lowercase, ascii_uppercase, punctuation
 
-from PwdValidator.pwd_rule import PwdRule
+from .pwd_rule import PwdRule
+from .validator import ValidatorInterface
 
 
-class PwdValidator:
+class PwdValidator(ValidatorInterface):
     """BasicPwdValidator is a class for checking passwords according to the
         assumed rules - PwdRule ().
 
@@ -110,7 +111,7 @@ class PwdValidator:
                 counter += 1
         return counter >= self.rule.min_number_of_uppercase_char
 
-    def is_valid(self, password) -> bool:
+    def validate(self, password) -> bool:
         """This method check every validation methods
 
         Args:
