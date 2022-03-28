@@ -18,13 +18,18 @@ with PwdFileManager("passwords.txt", "r") as passwords, open(
 ) as safe_passwords:
     # counter for status bar
     counter = 0
-    print_progress_bar(counter, len(passwords))
-    for password in passwords:
-        # check if password is valid with rules and has been leakage on haveibeenpwned
-        if validator.validate(password) and not haveibeenpwned(password):
-            safe_passwords.write(
-                f" password: {password.strip():<30} is safe, hash of password is: "
-                f"{hash_pwd(password)}\n"
-            )
-        counter += 1
+    if len(passwords) > 0:
+        
+
         print_progress_bar(counter, len(passwords))
+        for password in passwords:
+            # check if password is valid with rules and has been leakage on haveibeenpwned
+            if validator.validate(password) and not haveibeenpwned(password):
+                safe_passwords.write(
+                    f" password: {password.strip():<30} is safe, hash of password is: "
+                    f"{hash_pwd(password)}\n"
+                )
+            counter += 1
+            print_progress_bar(counter, len(passwords))
+    else:
+        print('No passwords in file!')

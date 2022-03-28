@@ -28,7 +28,7 @@ def haveibeenpwned(password: str) -> bool:
     Returns:
         bool: False if there was no leak, otherwise True
     """
-    my_hash = hash_pwd(password)
+    my_hash = hash_pwd(password).upper()
     response = get("https://api.pwnedpasswords.com/range/" + my_hash[:5])
 
     for line in response.text.splitlines():
