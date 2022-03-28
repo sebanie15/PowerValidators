@@ -57,9 +57,9 @@ def test_num_special_char_not_enough():
 def test_is_valid_ok():
     validator = PwdValidator()
     password = 'TEst12!@'
-    assert validator.is_valid(password) == True
+    assert validator.validate(password) == True
 
 def test_is_valid_():
     validator = PwdValidator()
     password = 'Test12!@'
-    assert validator.is_valid(password) == False
+    assert validator.validate(password) == False
