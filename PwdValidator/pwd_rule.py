@@ -3,7 +3,7 @@
 """
 
 
-from .pwd_exceptions import MinLengthException
+from .pwd_exceptions import ValidatorMinLengthException
 
 
 class PwdRule:
@@ -107,7 +107,7 @@ class PwdRule:
         """
         difference = value - self.__getattribute__(name)
         if self._min_length_of_pwd < self.__sum_of_criteria_length() + difference:
-            raise MinLengthException
+            raise ValidatorMinLengthException
         self.__setattr__(name, value)
 
     @property
@@ -129,7 +129,7 @@ class PwdRule:
         # self.__set_min_length(value)
         if value < self.DEFAULT_MIN_LENGTH:
             self._min_length_of_pwd = self.DEFAULT_MIN_LENGTH
-            raise MinLengthException
+            raise ValidatorMinLengthException
         self._min_length_of_pwd = value
 
     @property

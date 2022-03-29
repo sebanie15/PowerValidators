@@ -4,6 +4,7 @@ page https://haveibeenpwned.com/API/v3
 
 from hashlib import sha1
 from requests import get
+from .pwd_exceptions import HaveIbeenPwnedException
 
 
 def hash_pwd(password: str) -> str:
@@ -28,7 +29,7 @@ def haveibeenpwned(password: str) -> bool:
     Returns:
         bool: False if there was no leak, otherwise True
     """
-    my_hash = hash_pwd(password).upper()
+    my_hash = sha1(password.encode(encoding="utf-8")).hexdigest().upper()
     response = get("https://api.pwnedpasswords.com/range/" + my_hash[:5])
 
     for line in response.text.splitlines():
