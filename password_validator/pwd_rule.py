@@ -3,10 +3,10 @@
 """
 
 
-from .pwd_exceptions import ValidatorMinLengthException
+from text_validator.text_exceptions import LengthException
 
 
-class PwdRule:
+class PasswordRules:
     """_summary_
 
     Returns:
@@ -107,7 +107,7 @@ class PwdRule:
         """
         difference = value - self.__getattribute__(name)
         if self._min_length_of_pwd < self.__sum_of_criteria_length() + difference:
-            raise ValidatorMinLengthException
+            raise LengthException('Min length is too short!')
         self.__setattr__(name, value)
 
     @property
@@ -129,7 +129,7 @@ class PwdRule:
         # self.__set_min_length(value)
         if value < self.DEFAULT_MIN_LENGTH:
             self._min_length_of_pwd = self.DEFAULT_MIN_LENGTH
-            raise ValidatorMinLengthException
+            raise LengthException('Min length is too short!')
         self._min_length_of_pwd = value
 
     @property

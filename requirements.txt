@@ -17,3 +17,6 @@ tomli==2.0.1
 typing-extensions==4.1.1
 urllib3==1.26.9
 wrapt==1.14.0
+
+setuptools~=44.0.0
+pytest~=7.1.1
